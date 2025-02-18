@@ -1,6 +1,12 @@
 package com.example.composetutorial
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,6 +34,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.net.toUri
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
@@ -37,16 +45,13 @@ import java.io.File
 
 @Composable
 fun ProfileScreen(
-    onNavigateToConversation: () -> Unit,
-    //picture: File,
-    //name: File
+    onNavigateToConversation: () -> Unit
 ) {
 
     val context = LocalContext.current
     val resolver = context.contentResolver
     val picture = File(context.filesDir, "picture")
     val name = File(context.filesDir, "name")
-    //var pictureUri = picture.toUri().toString() + "?timestamp=${System.currentTimeMillis()}"
 
     var pictureUri by remember {
         mutableStateOf(picture.toUri().toString() + "?timestamp=${System.currentTimeMillis()}")

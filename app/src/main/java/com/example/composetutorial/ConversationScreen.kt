@@ -123,28 +123,3 @@ fun Conversation(messages: List<Message>) {
         }
     }
 }
-
-//@Preview(name = "Light Mode")
-//@Preview(
-//    uiMode = Configuration.UI_MODE_NIGHT_YES,
-//    showBackground = true,
-//    name = "Dark Mode"
-//)
-//@Composable
-//fun PreviewMessageCard() {
-//    ComposeTutorialTheme {
-//        Surface {
-//            MessageCard(
-//                msg = Message("Lexi", "Hey, take a look at Jetpack Compose, it's great!")
-//            )
-//        }
-//    }
-//}
-//
-//@Preview
-//@Composable
-//fun PreviewConversation() {
-//    ComposeTutorialTheme {
-//        Conversation(SampleData.conversationSample)
-//    }
-//}
