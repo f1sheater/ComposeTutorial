@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,7 +27,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.serialization.Serializable
-import java.io.File
 import android.Manifest
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -81,12 +79,12 @@ class MainActivity : ComponentActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        luxSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+
         requestPermission()
 
         setContent {
-            sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-            luxSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
-
             val notifyChannel =
                 NotificationChannel("channel", "default", NotificationManager.IMPORTANCE_DEFAULT).apply{}
             val notificationManager: NotificationManager =
